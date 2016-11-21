@@ -1,9 +1,15 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "1.2.4"
+}
+
 group 'com.clutteredcode'
 version '1.0.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
+mainClassName = 'com.clutteredcode.api.rest.ApiServer'
 
 repositories {
     mavenLocal()
@@ -11,6 +17,19 @@ repositories {
 }
 
 dependencies {
+    compile 'org.eclipse.jetty:jetty-servlet:9.3.14.v20161028'
+
+    compile 'com.google.inject:guice:4.1.0'
+    compile 'com.google.inject.extensions:guice-servlet:4.1.0'
+
+    compile 'org.jboss.resteasy:resteasy-jackson2-provider:3.0.19.Final'
+    compile('org.jboss.resteasy:resteasy-guice:3.0.19.Final') {
+        exclude group: 'com.google.inject'
+    }
+
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'org.slf4j:slf4j-ext:1.7.21'
+    compile 'org.slf4j:slf4j-simple:1.7.21'
 
     testCompile 'org.jmockit:jmockit:1.24'
     testCompile 'org.assertj:assertj-core:3.5.2'
