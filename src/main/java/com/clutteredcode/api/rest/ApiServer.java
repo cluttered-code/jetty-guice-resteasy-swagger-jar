@@ -54,11 +54,15 @@ public class ApiServer implements Runnable {
     private Server createServer() {
         final ServletContextHandler handler = new ServletContextHandler();
         handler.setContextPath("/");
-        handler.addEventListener(injector.getInstance(GuiceResteasyBootstrapServletContextListener.class));
+        handler.addEventListener(getGuiceResteasyListener());
         handler.addFilter(GuiceFilter.class, "/*", EnumSet.allOf(DispatcherType.class));
         final Server server = new Server(port);
         server.setHandler(handler);
         return server;
+    }
+
+    private GuiceResteasyBootstrapServletContextListener getGuiceResteasyListener() {
+        return injector.getInstance(GuiceResteasyBootstrapServletContextListener.class);
     }
 
     public static void main(final String[] args) {
