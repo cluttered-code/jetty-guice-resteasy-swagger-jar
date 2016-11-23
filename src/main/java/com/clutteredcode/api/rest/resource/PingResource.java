@@ -10,16 +10,16 @@ import javax.ws.rs.core.MediaType;
  * Created by david on 11/20/16.
  */
 @RequestScoped
-@Path("/test")
+@Path("ping")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class TestResource {
+public class PingResource {
 
     @Inject
-    private TestResource() {}
+    private PingResource() {}
 
     @GET
-    public String test(@QueryParam("name") @DefaultValue("Stranger") final String name) {
-        return "\"" + name + "\"";
+    public String ping() {
+        return "\"pong\"";
     }
 }

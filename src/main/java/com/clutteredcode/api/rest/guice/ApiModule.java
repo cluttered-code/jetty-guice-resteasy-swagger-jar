@@ -1,6 +1,6 @@
 package com.clutteredcode.api.rest.guice;
 
-import com.clutteredcode.api.rest.resource.TestResource;
+import com.clutteredcode.api.rest.resource.PingResource;
 import com.google.inject.AbstractModule;
 
 /**
@@ -10,6 +10,6 @@ public class ApiModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(TestResource.class);
+        bind(PingResource.class);
     }
 }
