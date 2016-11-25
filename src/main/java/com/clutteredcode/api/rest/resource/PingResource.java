@@ -1,6 +1,7 @@
 package com.clutteredcode.api.rest.resource;
 
 import com.google.inject.Singleton;
+import io.swagger.annotations.Api;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
@@ -18,6 +19,7 @@ import javax.ws.rs.core.Response;
  * Created by david on 11/20/16.
  */
 @Path("ping")
+@Api("Ping")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class PingResource {

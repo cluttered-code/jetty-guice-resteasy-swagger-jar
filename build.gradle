@@ -31,6 +31,9 @@ ext {
 }
 
 dependencies {
+    // Required for resteasy and swagger to play nice
+    compile "org.jboss.resteasy:jaxrs-api:3.0.12.Final"
+
     compile "org.eclipse.jetty:jetty-servlet:${jettyVersion}"
 
     compile "com.google.inject:guice:${guiceVersion}"
@@ -38,9 +41,12 @@ dependencies {
 
     compile "com.google.code.gson:gson:${gsonVersion}"
 
+
     compile("org.jboss.resteasy:resteasy-guice:${resteasyVersion}") {
         exclude group: 'com.google.inject'
     }
+
+    compile 'io.swagger:swagger-jaxrs:1.5.10'
 
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
     compile "org.slf4j:slf4j-ext:${slf4jVersion}"

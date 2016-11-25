@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
+import io.swagger.jaxrs.listing.ApiListingResource;
+import io.swagger.jaxrs.listing.SwaggerSerializers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +25,10 @@ public class ApiModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(GsonMessageBodyHandler.class);
+
+        // Swagger
+        bind(ApiListingResource.class);
+        bind(SwaggerSerializers.class);
 
         try {
             loadResources();

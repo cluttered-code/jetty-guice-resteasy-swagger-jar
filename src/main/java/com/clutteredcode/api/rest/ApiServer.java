@@ -53,7 +53,7 @@ public class ApiServer implements Runnable {
 
     private Server createServer() {
         final ServletContextHandler handler = new ServletContextHandler();
-        handler.setContextPath("/");
+        handler.setContextPath("/api");
         handler.addEventListener(getGuiceResteasyListener());
         handler.addFilter(GuiceFilter.class, "/*", EnumSet.allOf(DispatcherType.class));
         final Server server = new Server(port);
