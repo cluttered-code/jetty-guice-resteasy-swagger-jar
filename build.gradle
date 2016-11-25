@@ -22,7 +22,8 @@ dependencies {
     compile 'com.google.inject:guice:4.1.0'
     compile 'com.google.inject.extensions:guice-servlet:4.1.0'
 
-    compile 'org.jboss.resteasy:resteasy-jackson2-provider:3.0.19.Final'
+    compile 'com.google.code.gson:gson:2.8.0'
+
     compile('org.jboss.resteasy:resteasy-guice:3.0.19.Final') {
         exclude group: 'com.google.inject'
     }

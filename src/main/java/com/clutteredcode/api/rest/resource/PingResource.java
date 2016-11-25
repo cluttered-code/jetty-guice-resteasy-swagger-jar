@@ -1,6 +1,8 @@
 package com.clutteredcode.api.rest.resource;
 
 import com.google.inject.Singleton;
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -16,12 +18,12 @@ import javax.ws.rs.core.Response;
  * Created by david on 11/20/16.
  */
 @Path("ping")
-@Singleton
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class PingResource {
 
     public static final String PONG = "\"pong\"";
+    private static final XLogger LOG = XLoggerFactory.getXLogger(PingResource.class);
 
     @Inject
     private PingResource() {
@@ -29,14 +31,18 @@ public class PingResource {
 
     @GET
     public String ping() {
+        LOG.entry();
+        LOG.exit(PONG);
         return PONG;
     }
 
     @GET
     @Path("/async")
     public void asyncPing(@Suspended final AsyncResponse response) {
-        new Thread(() ->
-                response.resume(Response.ok(PONG).build())
-        ).start();
+        new Thread(() -> {
+            LOG.entry();
+            response.resume(Response.ok(PONG).build());
+            LOG.exit(PONG);
+        }).start();
     }
 }
