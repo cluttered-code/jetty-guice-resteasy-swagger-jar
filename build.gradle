@@ -16,27 +16,43 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    gsonVersion = '2.8.0'
+    guiceVersion = '4.1.0'
+    jettyVersion = '9.3.14.v20161028'
+    resteasyVersion = '3.0.19.Final'
+    slf4jVersion = '1.7.21'
+
+    assertjVersion = '3.5.2'
+    jmockitVersion = '1.24'
+    junitVersion = '4.12'
+}
+
 dependencies {
-    compile 'org.eclipse.jetty:jetty-servlet:9.3.14.v20161028'
+    compile "org.eclipse.jetty:jetty-servlet:${jettyVersion}"
 
-    compile 'com.google.inject:guice:4.1.0'
-    compile 'com.google.inject.extensions:guice-servlet:4.1.0'
+    compile "com.google.inject:guice:${guiceVersion}"
+    compile "com.google.inject.extensions:guice-servlet:${guiceVersion}"
 
-    compile 'com.google.code.gson:gson:2.8.0'
+    compile "com.google.code.gson:gson:${gsonVersion}"
 
-    compile('org.jboss.resteasy:resteasy-guice:3.0.19.Final') {
+    compile("org.jboss.resteasy:resteasy-guice:${resteasyVersion}") {
         exclude group: 'com.google.inject'
     }
 
-    compile 'org.slf4j:slf4j-api:1.7.21'
-    compile 'org.slf4j:slf4j-ext:1.7.21'
-    compile 'org.slf4j:slf4j-simple:1.7.21'
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "org.slf4j:slf4j-ext:${slf4jVersion}"
+    compile "org.slf4j:slf4j-simple:${slf4jVersion}"
 
-    testCompile 'org.jmockit:jmockit:1.24'
-    testCompile 'org.assertj:assertj-core:3.5.2'
-    testCompile('junit:junit:4.12') {
+    testCompile "org.assertj:assertj-core:${assertjVersion}"
+    testCompile "org.jmockit:jmockit:${jmockitVersion}"
+    testCompile("junit:junit:${junitVersion}") {
         exclude group: 'org.hamcrest'
     }
+}
+
+shadowJar {
+    classifier = null
 }
 
 task wrapper(type: Wrapper) {
