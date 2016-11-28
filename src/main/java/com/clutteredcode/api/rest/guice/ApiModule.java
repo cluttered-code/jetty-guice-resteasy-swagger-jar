@@ -1,11 +1,8 @@
 package com.clutteredcode.api.rest.guice;
 
-import com.clutteredcode.api.rest.json.GsonMessageBodyHandler;
+import com.clutteredcode.api.rest.resource.PingResource;
 import com.google.common.reflect.ClassPath;
-import com.google.gson.Gson;
 import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
-import com.google.inject.Singleton;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
 import org.slf4j.Logger;
@@ -20,12 +17,10 @@ import java.util.Collection;
 public class ApiModule extends AbstractModule {
 
     private static final Logger LOG = LoggerFactory.getLogger(ApiModule.class);
-    private static final String RESOURCE_PACKAGE = "com.clutteredcode.api.rest.resource";
+    private static final String RESOURCE_PACKAGE = PingResource.class.getPackage().getName();
 
     @Override
     protected void configure() {
-        bind(GsonMessageBodyHandler.class);
-
         // Swagger
         bind(ApiListingResource.class);
         bind(SwaggerSerializers.class);

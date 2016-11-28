@@ -1,6 +1,7 @@
 package com.clutteredcode.api.rest.guice;
 
 import com.clutteredcode.api.rest.filter.CorsFilter;
+import com.clutteredcode.api.rest.resource.PingResource;
 import com.clutteredcode.api.rest.swagger.SwaggerBootstrap;
 import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
@@ -20,6 +21,10 @@ public class ApiServletModule extends ServletModule {
         bind(HttpServletDispatcher.class).in(Singleton.class);
         serve("/*").with(HttpServletDispatcher.class);
 
+//        // Use Filter instead of HttpServlet above
+//        bind(FilterDispatcher.class).in(Singleton.class);
+//        filter("/*").through(FilterDispatcher.class);
+
         serve("").with(SwaggerBootstrap.class);
         BeanConfig beanConfig = new BeanConfig();
         beanConfig.setVersion("1.0.0-SNAPSHOT");
@@ -27,8 +32,8 @@ public class ApiServletModule extends ServletModule {
         beanConfig.setDescription("This is a app.");
         beanConfig.setTitle("Swagger API");
         beanConfig.setHost("localhost:9000");
-        beanConfig.setBasePath("/");
-        beanConfig.setResourcePackage("com.clutteredcode.api.rest.resource");
+        beanConfig.setBasePath("/api");
+        beanConfig.setResourcePackage(PingResource.class.getPackage().getName());
         beanConfig.setContact("cluttered.code@gmail.com");
         beanConfig.setScan(true);
 

@@ -39,14 +39,14 @@ dependencies {
     compile "com.google.inject:guice:${guiceVersion}"
     compile "com.google.inject.extensions:guice-servlet:${guiceVersion}"
 
-    compile "com.google.code.gson:gson:${gsonVersion}"
-
-
+    compile "org.jboss.resteasy:resteasy-jackson2-provider:${resteasyVersion}"
     compile("org.jboss.resteasy:resteasy-guice:${resteasyVersion}") {
         exclude group: 'com.google.inject'
     }
 
     compile 'io.swagger:swagger-jaxrs:1.5.10'
+    compile 'org.webjars:swagger-ui:2.2.6'
+
 
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
     compile "org.slf4j:slf4j-ext:${slf4jVersion}"
